@@ -11,7 +11,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
   remainingTime: number;
 
   @Input()
-  seconds = 11;
+  seconds;
 
   clearTimer() {
     clearInterval(this.intervalId);
@@ -51,6 +51,6 @@ export class CountdownComponent implements OnInit, OnDestroy {
       } else {
         this.message = `T-${this.remainingTime} seconds and counting`;
       }
-    }, 1000);
+    }, 500);
   }
 }
