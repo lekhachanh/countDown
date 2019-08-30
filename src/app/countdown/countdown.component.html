@@ -1,13 +1,22 @@
-<h2>Countdown Timer</h2>
-<input [(ngModel)] ="seconds" [type]="seconds">
-
-<div class="group-actions">
+<div class="group-actions" style="text-align: center; border: 1px solid black; background: bisque">
+  <h2>Countdown Timer</h2>
+  <input [(ngModel)] ="seconds" type="number">
   <button (click)="start()">Start</button>
   <button (click)="stop()">Stop</button>
   <button (click)="reset()">Reset</button>
+  <div class="timer">
+    <span class="timer-text">{{ remainingTime }}</span>
+  </div>
+  <p>{{ message }}</p>
+  <h2>Progress Bar</h2>
+
+  <div class="progress-bar-container" [style.backgroundColor]="backgroundColor">
+    <div class="progress" [ngStyle]="{
+    backgroundColor: progressColor,
+    width: width + '%'
+  }"></div>
+  </div>
+
+
 </div>
-<div class="timer">
-  <span class="timer-text">{{ remainingTime }}</span>
-</div>
-<p>{{ message }}</p>
 

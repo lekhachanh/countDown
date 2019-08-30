@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { CountdownComponent } from './countdown/countdown.component';
 import {FormsModule} from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    CountdownComponent
+    CountdownComponent,
   ],
   imports: [
     BrowserModule,

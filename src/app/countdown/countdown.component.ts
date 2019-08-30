@@ -12,14 +12,21 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   @Input()
   seconds;
+  @Input() backgroundColor = '#d9d9d9';
+  @Input() progressColor = '#4CAF50';
+  @Input() width ;
 
   clearTimer() {
     clearInterval(this.intervalId);
   }
 
   ngOnInit() {
+    this.width = 100;
     this.reset();
-    this.start();
+    if (this.seconds < 0) {
+      clearInterval();
+      this.seconds = 5;
+    }
   }
   ngOnDestroy() {
     this.clearTimer();
@@ -27,24 +34,37 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   start() {
     this.countDown();
-    if (this.remainingTime <= 0) {
+    if (this.remainingTime <= 0 ) {
       this.remainingTime = this.seconds;
     }
   }
+
+  progress() {
+    this.width = this.remainingTime * 100 / this.seconds;
+  }
+
   stop() {
     this.clearTimer();
     this.message = `Holding at T-${this.remainingTime} seconds`;
   }
   reset() {
-    this.clearTimer();
-    this.remainingTime = this.seconds;
-    this.message = `Click start button to start the Countdown`;
+    this.clearTimer()
+    if (this.seconds > 0) {
+      this.remainingTime = this.seconds;
+      this.message = `Click start button to start the Countdown`;
+    } else {
+      this.remainingTime = 0;
+      this.seconds = 0;
+    }
   }
 
   private countDown() {
     this.clearTimer();
     this.intervalId = window.setInterval(() => {
-      this.remainingTime -= 1;
+      if (this.remainingTime > 0) {
+        this.remainingTime -= 1;
+        this.progress();
+      }
       if (this.remainingTime === 0) {
         this.message = 'Blast off!';
         this.clearTimer();
