@@ -51,6 +51,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
     this.clearTimer()
     if (this.seconds > 0) {
       this.remainingTime = this.seconds;
+      this.width = this.remainingTime * 100 / this.seconds;
       this.message = `Click start button to start the Countdown`;
     } else {
       this.remainingTime = 0;
