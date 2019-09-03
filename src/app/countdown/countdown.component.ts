@@ -72,6 +72,6 @@ export class CountdownComponent implements OnInit, OnDestroy {
       } else {
         this.message = `T-${this.remainingTime} seconds and counting`;
       }
-    }, 500);
+    }, 1000);
   }
 }
